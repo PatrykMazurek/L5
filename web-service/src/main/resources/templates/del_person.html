@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>usuwanie osób</title>
+</head>
+    <div>
+        <p>Czy na pewno chcesz usunąć osobę?</p>
+        <p>
+            <span th:text="${person.firstName}"></span> 
+            <span th:text="${person.lastName}"></p>
+    </div>
+    <div>
+        <a th:href="@{'/person/del_person/'+ ${person.id}(accept=true) }"><button>Tak</button></a>
+        <a th:href="@{'/person/all'}"><button>Nie</button></a>
+    </div>
+<body>
+    
+</body>
+</html>
