@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <table>
+            <tr th:each=" con : ${commisions}">
+                <td><span th:text="${con.name}"></span></td>
+                <td><span th:text="${con.code}"></span></td>
+                <td><span th:text="${con.phone}"></span></td>
+                <td><span th:text="${con.type}"></span></td>
+                <td><span th:text="${con.compositionDate}"></span></td>
+                <td>
+                    <span th:each="memb : ${con.members}">
+                        <span th:text="${memb.lastFirstName}"></span>
+                        (<span th:text="${memb.function}"></span>)
+                    </span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

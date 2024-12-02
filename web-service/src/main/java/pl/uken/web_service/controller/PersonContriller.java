@@ -11,9 +11,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.client.RestTemplate;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
+import pl.uken.web_service.model.Commision;
 import pl.uken.web_service.model.Person;
 import pl.uken.web_service.repository.PersonRepository;
 
@@ -74,5 +79,23 @@ public class PersonContriller {
             }
         }
         return "redirect:/";
+    }
+
+    @GetMapping("/commision")
+    public String getCommisionView(Model model){
+        String url = "https://api.sejm.gov.pl/sejm/term10/committees";
+        RestTemplate template = new RestTemplate();
+        String result = template.getForObject(url, String.class);
+        ObjectMapper mapper = new ObjectMapper();
+        Commision[] commision = null;
+        try {
+            commision = mapper.readValue(result, Commision[].class);
+            System.out.println(commision[0].getName());
+        } catch (JsonProcessingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        model.addAttribute("commisions", commision);
+        return "commision_all";
     }
 }
