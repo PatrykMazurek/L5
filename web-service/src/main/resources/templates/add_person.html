@@ -29,6 +29,11 @@
                     th:errors="*{age}"></span>
         </div>
         <div>
+            <input type="email" th:field="*{email}" >
+            <span th:if="${ #fields.hasErrors( 'email' ) }"
+                    th:errors="*{email}"></span>
+        </div>
+        <div>
             <button type="submit"> Zapisz </button>
         </div>
     </form>

@@ -1,5 +1,6 @@
 package pl.uken.krakow.web_service.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.client.RestTemplate;
 
 import jakarta.websocket.server.PathParam;
 import pl.uken.krakow.web_service.model.Person;
@@ -48,7 +50,8 @@ public class PersonController {
             return "add_person";
         }
         repository.save(p);
-        return "redirect:/";
+
+        return "redirect:http://localhost:8080/person/";
     }
 
         @GetMapping("/del/{id}" )
@@ -69,9 +72,19 @@ public class PersonController {
             Person p = repository.findById(id).orElse(null);
             if (p != null){
                 repository.delete(p);
-                return "redirect:/person/all";
+                return "redirect:http://localhost:8080/person/all";
             }
         }
-        return "redirect:/";
+        return "redirect:http://localhost:8080/person/";
+    }
+
+    private boolean emailAccount(Long personId, String email){
+        String url = "http://localhost:8090/add/";
+        RestTemplate rest = new RestTemplate();
+        HashMap<String, Object> obj = new HashMap<>();
+        obj.put("personId", personId);
+        obj.put("email", email);
+        String resault = rest.postForObject(url, obj, String.class);
+        return true;
     }
 }
