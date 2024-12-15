@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dodanie osób</title>
+</head>
+<body>
+    <form action="#" method="post" th:action="@{send_message}" 
+            th:object="${msg}">
+        <div>
+            <input type="text" th:field="*{name}" placeholder="Nick">
+            <span th:if="${ #fields.hasErrors( 'name' ) }"
+                    th:errors="*{name}"></span>
+        </div>
+        <div>
+            <textarea th:field="*{text}" placeholder="Text wiadomości"></textarea>
+            <span th:if="${ #fields.hasErrors( 'text' ) }"
+                    th:errors="*{text}"></span>
+        </div>
+        <div>
+            <button type="submit"> Zapisz </button>
+        </div>
+    </form>
+</body>
+</html>

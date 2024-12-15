@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <div>
+        <h2>Lista wiadomości</h2>
+        <div>
+            <div th:each="msg: ${listMsg}">
+                <div>
+                    <h4 th:text="${msg.name}"></h4> 
+                    <span th:text="${msg.createAt}"></span>
+                </div>
+                <div th:text="${msg.text}"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

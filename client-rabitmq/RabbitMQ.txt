@@ -1,0 +1,11 @@
+Oficjalna strona RabbitMQ
+https://www.rabbitmq.com/
+
+prosta implementacjia przekazywania i odbierania wiadomości 
+https://bykowski.pl/spring-boot-18-java-message-service-i-rabbitmq/
+
+https://www.tutorialspoint.com/rabbitmq/index.htm
+https://github.com/rabbitmq/rabbitmq-tutorials
+https://www.youtube.com/watch?v=TvxhuAUJGUg&list=PLGRDMO4rOGcMh2fAMOnwuBMDa8PxiKWoN&index=1
+https://www.javaguides.net/2022/07/spring-boot-rabbitmq-send-and-receive-json-messages.html
+
